@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Categories</title>
+</head>
+
+<body>
+    <div class="container">
+        <main>
+            <section id="summary">
+                <h1>Ethnic Cuisine Review Categories</h1>
+                <p>
+                    These are the list of ethnic cuisines that have been curated by me
+                </p>
+            </section>
+
+            <section th:each="category: ${categories}">
+                <ul>
+                    <li>
+                        <a th:href="@{/category(id=${category.id})}" th:text="${category.name}"></a>   
+                    </li>
+                </ul>
+
+            </section>
+        </main>
+
+
+
+
+
+    </div>
+    
+</body>
+</html>

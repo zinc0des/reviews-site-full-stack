@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" th:href="@{/styles/style.css}" />
+
+    <title>Indian Food Reviews</title>
+</head>
+<body>
+    <div class="container">
+        <main>
+            <section id="intro">
+                <h1>Indian Food Reviews</h1>
+            <p>
+                    India is definitely one place where you will find uncountable vegetarian, vegan,
+                     and non-vegetarian and a lot of vegan dishes. Most people from different parts 
+                     of the world do not know that the culture changes with every state in India. The 
+                     food habits change with the mixture of soil types, climate and occupation and
+                    dishes are prepared according to the availability of spices, herbs, vegetables and 
+                    fruits in particular region. 
+            </p>
+
+            <div id="foodImage">
+                <figure>
+                    <img class="center" id="foodFig" src="./images/FoodInIndia.jpg" width="100%"/>
+                    <figcaption> <i>A Indian vegetarian meal</i></figcaption>
+                </figure>
+            </div>
+            <h2>Here are a compilation of top-rated reviews of Indian recipes</h2>
+            </section>
+            <div id="gridContainer">
+                    <section id="reviewList" th:each ="review: ${reviews}">                                 <!-- TODO CHANGE TO GRID OR FLEXBOX -->
+                        <div class="grid-item-1">
+                            <a th:href="@{/review(id=${review.id})}"><img class="linkImage" th:src="@{${review.imageUrl}}" /></a>
+                            <div class="grid-item-2">
+                            <a class="poloroidText" th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+    </div>
+</body>
+</html>
