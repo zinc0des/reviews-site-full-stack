@@ -1,0 +1,45 @@
+:root {
+    font-size: 16px;
+  }
+  
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  h1,h2,h3,h4 {
+    font-family: 'Raleway', sans-serif;
+}
+/* .container{
+	width:10%;
+	display: grid;
+	grid-template-rows: 40px auto 4rem;
+	height: 10vh;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+} */
+
+/* header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: lightgray;
+	border-bottom: 1px solid black;
+} */
+
+img {
+    display: block;
+    padding: 10px;
+    padding-bottom: 3em;
+    max-width: 100%;
+    border: 1px solid black;
+    
+}
+
+main {
+    margin-top: 3em;
+}
+
+footer {
+    text-align: center;
+}
