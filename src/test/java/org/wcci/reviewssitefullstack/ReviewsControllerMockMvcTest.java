@@ -68,7 +68,7 @@ public class ReviewsControllerMockMvcTest {
 		public void shouldPutSingleReviewIntoModel() throws Exception {
 			when(reviewRepo.findById(1L)).thenReturn(Optional.of(review));
 			
-			mvc.perform(get("/review?id=1")).andExpect(model().attribute("reviews",  is(review)));
+			mvc.perform(get("/review?id=1")).andExpect(model().attribute("review",  is(review)));
 		}
 		
 		// Testing for all reviews
@@ -114,7 +114,7 @@ public class ReviewsControllerMockMvcTest {
 		public void shouldPutSingleCategoryIntoModel() throws Exception {
 			when(categoryRepo.findById(1L)).thenReturn(Optional.of(category));
 			
-			mvc.perform(get("/category?id=1")).andExpect(model().attribute("categories", is(category)));
+			mvc.perform(get("/category?id=1")).andExpect(model().attribute("category", is(category)));
 		}
 		
 		// Testing for all Categories
