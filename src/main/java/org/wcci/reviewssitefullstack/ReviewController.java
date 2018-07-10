@@ -28,7 +28,7 @@ public class ReviewController {
 	public String getAReview(@RequestParam(value="id") long reviewId, Model model) throws ReviewNotFoundException {
 		Optional<Review> review = reviewRepo.findById(reviewId);
 		if(review.isPresent() ) {
-			model.addAttribute("reviews", review.get());
+			model.addAttribute("review", review.get());
 			return "review";
 		}
 		throw new ReviewNotFoundException();
@@ -45,8 +45,8 @@ public class ReviewController {
 		Optional<Category> category = categoryRepo.findById(categoryId);
 		
 		if (category.isPresent() ) {
-		model.addAttribute("categories", category.get());
-		return "category";
+			model.addAttribute("category", category.get());
+			return "category";
 		}
 		throw new CategoryNotFoundException();
 	}

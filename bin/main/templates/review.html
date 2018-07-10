@@ -13,14 +13,13 @@
         <main>
             <h1>Top-Rated Recipe</h1>
 
-            <section th:each="review:${reviews}">
                 <h2 th:text="${review.title}"></h2>
                 <p th:text="${review.content}"></p>
                 <img class="center" th:src="@{${review.imageUrl}}" />
-                <p><strong>Category:</strong>
+                <p th:if="${review.category}">
+                	<strong>Category:</strong>
                     <a th:href="@{/category(id=${review.category.id})}" th:text="' '+ ${review.category.name}"></a>
                 </p>
-             </section>
          </main>
     </div>
     <nav id="mainNav">
