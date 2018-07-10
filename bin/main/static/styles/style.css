@@ -43,3 +43,36 @@ main {
 footer {
     text-align: center;
 }
+#mainNav {
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    border: .5px solid var(--main-color2);
+    box-shadow: 0 0 1px var(--main-color2);
+    padding-top: 2px;
+    position: absolute;
+    top: 2.8em;
+    transition: .5s;
+}
+
+#mainNav > div{
+    width: 100%;
+    background: var(--main-color1);
+    box-shadow: 0 0 1px var(--main-color2);
+
+}
+
+#mainNav a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    
+    background: var(--main-color1);
+    border: .5px solid var(--main-color2);
+    box-shadow: 0 0 1px var(--main-color2) inset;
+    padding: 1em;
+}
+
+#mainNav a:visited {
+    text-decoration: none;
+}
