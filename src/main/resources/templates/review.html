@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <main>
+        <main>>
             <h1>Top-Rated Recipe</h1>
 
                 <h2 th:text="${review.title}"></h2>
@@ -22,13 +22,17 @@
                 </p>
          </main>
     </div>
-    <nav id="mainNav">
+    <nav id="Nav">
             <div>
                 <a href="./show-reviews">Reviews</a>
                 <a href="/show-categories">Categories</a>
             </div>
     </nav>
     <footer class="center">
+            <section>
+                    <h3><a href="http://localhost:8080/show-categories">Back to Home</a></h3>
+                    <h3><a href="http://localhost:8080/category?id=1">Back to Category</a></h3>
+                </section>
             <small>&copy; 2018 Satavisha Roy </small>
     </footer>
 </body>

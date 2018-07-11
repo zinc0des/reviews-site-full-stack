@@ -35,7 +35,7 @@ public class ReviewsPopulator implements CommandLineRunner {
 				+ "sapien nisl. Sed nec tellus ac augue mattis pulvinar sed vel sem. Vestibulum nec dapibus " 
 				+ "neque, id vestibulum ligula."));
 		
-		Review spaghetti = reviewRepo.save(new Review(italian, "Chicken Carbonara", "/images/spaghetti.jpg",
+		Review spaghetti = reviewRepo.save(new Review(italian, "Sphaghetti and Meatballs", "/images/spaghetti.jpg",
 				"Vestibulum erat urna, sollicitudin in ligula at, hendrerit ullamcorper dui. In quis diam eros. "
 				+ "Pellentesque sit amet vulputate tortor. Nunc volutpat finibus laoreet. Pellentesque nec " 
 				+ "ornare nibh, vel sollicitudin tellus. Vivamus efficitur dignissim tortor sagittis fringilla."));

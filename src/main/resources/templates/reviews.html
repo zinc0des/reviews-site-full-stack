@@ -25,8 +25,8 @@
 
             <div id="foodImage">
                 <figure>
-                    <img class="center" id="foodFig" src="/images/FoodInIndia.jpg" width="100%"/>
-                    <figcaption> <i>A Indian vegetarian meal</i></figcaption>
+                    <img class="center" id="foodFig" src="/images/lotOfFood.jpg" width="100%"/>
+                    <figcaption> <i>A display of varieties of food items</i></figcaption>
                 </figure>
             </div>
             <h2>Here are a compilation of top-rated reviews of Indian recipes</h2>
@@ -36,7 +36,7 @@
                         <div class="grid-item-1">
                             <a th:href="@{/review(id=${review.id})}"><img class="linkImage" th:src="@{${review.imageUrl}}" /></a>
                             <div class="grid-item-2">
-                            <a class="poloroidText" th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a>
+                            <a th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a>
                             </div>
                         </div>
                     </section>
