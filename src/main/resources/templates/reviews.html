@@ -13,35 +13,56 @@
     <div class="container">
         <main>
             <section id="intro">
-                <h1>Indian Food Reviews</h1>
-            <p>
-                    India is definitely one place where you will find uncountable vegetarian, vegan,
-                     and non-vegetarian and a lot of vegan dishes. Most people from different parts 
-                     of the world do not know that the culture changes with every state in India. The 
-                     food habits change with the mixture of soil types, climate and occupation and
-                    dishes are prepared according to the availability of spices, herbs, vegetables and 
-                    fruits in particular region. 
-            </p>
+                <h1>Ethnic Food </h1>
+                <p>
+                    Ethnic foods are foods that are regarded as unique to a particular cultural group, 
+                    race, religion, nation, or heritage. Consumers of ethnic diets often have cultural 
+                    but also socioeconomic, religious, or regional characteristics that are distinctive. 
+                    From the cultural standpoint, ethnic foods serve as a familiar link with the past 
+                    and help those who are accustomed to them maintain ethnic identity. Ethnic foods
+                    provide eaters from other culinary traditions with opportunities to experience new 
+                    cuisines and cultures. They are also important in designing or tailoring culturally 
+                    relevant nutrition interventions to reach nutritionally vulnerable, hard-to-reach 
+                    ethnic groups within the community. In addition to being familiar, many ethnic foods 
+                    have actual or perceived health importance that may heighten their appeal. Finally, 
+                    ethnic foods provide a platform for developing attractive new foods that appeal to 
+                    broader segments of the population.
+                </p>
 
-            <div id="foodImage">
-                <figure>
-                    <img class="center" id="foodFig" src="/images/lotOfFood.jpg" width="100%"/>
-                    <figcaption> <i>A display of varieties of food items</i></figcaption>
-                </figure>
-            </div>
-            <h2>Here are a compilation of top-rated reviews of Indian recipes</h2>
+                <div id="foodImage">
+                    <figure>
+                        <img class="center" id="foodFig" src="/images/lotOfFood.jpg" width="100%"/>
+                        <figcaption> <i>A display of varieties of food items</i></figcaption>
+                    </figure>
+                </div>
             </section>
-            <div id="gridContainer">
-                    <section id="reviewList" th:each ="review: ${reviews}">                                 <!-- TODO CHANGE TO GRID OR FLEXBOX -->
+            
+            <section id=reviewCollectionTitle>                                 <!-- TODO CHANGE TO GRID OR FLEXBOX -->
+                <h2>Here is a compilation of top-rated reviews of some great recipes</h2>
+                
+                <div class="gridContainer">
+                    <div class="reviewList" th:each ="review: ${reviews}">
+                        
                         <div class="grid-item-1">
                             <a th:href="@{/review(id=${review.id})}"><img class="linkImage" th:src="@{${review.imageUrl}}" /></a>
-                            <div class="grid-item-2">
+                        </div>   
+                        <div class="grid-item-2">
                             <a th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a>
-                            </div>
                         </div>
-                    </section>
+                            
+                    </div>
                 </div>
-            </main>
+            </section>
+        </main>
+        <nav id="Nav">
+            <div>
+                <a href="./show-reviews">Reviews</a>
+                <a href="/show-categories">Categories</a>
+            </div>
+        </nav>
+    <footer class="classFooter">
+        <small>&copy; 2018 Satavisha Roy </small>
+     </footer>
     </div>
 </body>
 </html>
