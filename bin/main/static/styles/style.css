@@ -21,21 +21,39 @@ main {
     margin-top: 2em;
 }
 
+figure {
+    margin: 2rem 0;
+}
+
 .container {
-    margin: 0 auto;
+    margin: auto;
     display: block;
-    width: 80%;
+    width: 90%;
     background: red;
-    height: 100vh;
+    min-height: 100vh;
     margin-bottom: 20%;
 }
+#intro > p {
+    margin-bottom: 2rem;
+}
+
+#intro > h1 {
+    text-align: center;
+}
+/* #intro {
+    height: 100vh;
+} */
 
 .gridContainer {
     display: grid;
+    align-items: stretch; 
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
 }
-
+ /* .grid-item-1, .grid-item-2 {
+    display: flex;
+    align-items: center;
+}  */
 .reviewList {
     display: flex;
     flex-direction: column;
@@ -47,8 +65,12 @@ main {
 }
 
 .linkImage {
-    max-height: 9em;
+    display: block;
+    padding: 5px;
+    padding-bottom: 3em;
+    border: 1px solid black;
     grid-gap: 2em;
+    width: 28vw;
 }
 
 
@@ -59,6 +81,7 @@ main {
 
 .classFooter {
     position: fixed;
+    text-align: center;
     bottom:0;
     left: 0;
     width:100%;
@@ -75,4 +98,31 @@ main {
      width: 100%;
      left: 0;
      height: 2em;
+ }
+
+ @media screen and (max-width: 500px) {
+     .gridContainer {
+         grid-template-columns: 1fr;
+     }
+     .linkImage {
+        width: 80vw;
+     }
+ }
+
+ .imageCat {
+     display: block;
+     margin: auto;
+ }
+
+ #cat-list > li {
+     text-align: center;
+     list-style-type: none;
+     padding-top: 2rem;
+     
+ }
+
+ #CategoryList > li {
+     text-align: center;
+     list-style-type: none;
+     padding-top: 2rem;
  }

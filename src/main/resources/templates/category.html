@@ -21,9 +21,9 @@
                 <h3>Related Reviews</h3>
 
                 <div th:each="review : ${category.reviews}">
-                    <ul>
+                    <ul id="cat-list">
                         <li>
-                            <img th:src="@{${review.imageUrl}}" />
+                            <img class= "imageCat" th:src="@{${review.imageUrl}}" />
                             <a th:href="@{review(id=${review.id})}" th:text="${review.title}"></a>
                         </li>
                     </ul>

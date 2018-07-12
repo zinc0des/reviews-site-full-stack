@@ -16,12 +16,12 @@
             <section id="summary">
                 <h1>Ethnic Cuisine Review Categories</h1>
                 <p>
-                    These are the list of ethnic cuisines that have been curated by me
+                    These is the list of ethnic cuisines that have been curated by me
                 </p>
             </section>
 
             <section th:each="category: ${categories}">
-                <ul>
+                <ul id="CategoryList">
                     <li>
                         <a th:href="@{/category(id=${category.id})}" th:text="${category.name}"></a>   
                     </li>
