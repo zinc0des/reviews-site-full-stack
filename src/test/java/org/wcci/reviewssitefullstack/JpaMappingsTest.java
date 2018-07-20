@@ -29,6 +29,9 @@ public class JpaMappingsTest {
 	@Resource
 	private CategoryRepository categoryRepo;
 
+	@Resource
+	private TagRepository tagRepo;
+	
 	@Test
 	public void shouldSaveAndLoadCategory() {
 		Category category = categoryRepo.save(new Category("category", "description"));
@@ -90,6 +93,81 @@ public class JpaMappingsTest {
 		assertThat(reviewsForCategory, containsInAnyOrder(review1, review2));
 	
 	}
+	
+	@Test
+	public void shouldSaveAndLoadTags() {
+		Tag tag = tagRepo.save(new Tag("tag_name"));
+		long tagId = tag.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<Tag> result = tagRepo.findById(tagId);
+		tag = result.get();
+		assertThat(tag.getName(), is("tag_name"));
+	}
+
+	@Test
+	public void shouldGenerateTagId() {
+		Tag tag = tagRepo.save(new Tag("tag_name"));
+		long tagId = tag.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		assertThat(tagId, is(greaterThan(0L)));
+	}
+
+	@Test
+	public void shouldEstablishReviewToTagRelationship() {
+		// Tag is not the owner, so we must create tags first
+		Tag tag1 = tagRepo.save(new Tag("tag1"));
+		Tag tag2 = tagRepo.save(new Tag("tag2"));
+		
+		Category indian = categoryRepo.save(new Category("indian", "description"));
+		
+		Review review1 = reviewRepo.save(new Review(indian, "review1title", "imageUrl", "content", tag1, tag2));
+
+		long reviewId = review1.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<Review> result = reviewRepo.findById(reviewId);
+		review1 = result.get();
+		assertThat(review1.getTags(), containsInAnyOrder(tag1,tag2));
+	}
+	
+	@Test
+	public void shouldFindReviewsForTag() {
+		Tag tag1 = tagRepo.save(new Tag("tag1"));
+		
+		Category indian = categoryRepo.save(new Category("indian", "description"));
+		
+		Review review1 = reviewRepo.save(new Review(indian, "review1title", "imageUrl", "content", tag1));
+		Review review2 = reviewRepo.save(new Review(indian, "review2title", "imageUrl", "content", tag1));
+		
+		Collection<Review> reviewsForTag = reviewRepo.findByTags(tag1);
+		
+		assertThat(reviewsForTag, containsInAnyOrder(review1, review2));
+	}
+
+	@Test
+	public void shouldFindReviewsForTagId() {
+		Tag tag1 = tagRepo.save(new Tag("tag1"));
+		long tagId = tag1.getId();
+		
+		Category indian = categoryRepo.save(new Category("indian", "description"));
+		
+		Review review1 = reviewRepo.save(new Review(indian, "review1title", "imageUrl", "content", tag1));
+		Review review2 = reviewRepo.save(new Review(indian, "review2title", "imageUrl", "content", tag1));
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Collection<Review> reviewsForTopic = reviewRepo.findByTagsId(tagId);
+		
+		assertThat(reviewsForTopic, containsInAnyOrder(review1, review2));
+	}
+
 }
-
-

@@ -33,6 +33,9 @@ public class ReviewsControllerMockMvcTest {
 		@MockBean
 		private CategoryRepository categoryRepo;
 		
+		@MockBean
+		private TagRepository tagRepo;
+		
 		@Mock
 		private Review review;
 		
@@ -44,6 +47,12 @@ public class ReviewsControllerMockMvcTest {
 		
 		@Mock
 		private Category anotherCategory;
+		
+		@Mock
+		private Tag tag;
+		
+		@Mock
+		private Tag anotherTag;
 		
 		@Test 
 		public void shouldRouteToSingleReviewView() throws Exception {
@@ -134,5 +143,51 @@ public class ReviewsControllerMockMvcTest {
 			when(categoryRepo.findAll()).thenReturn(allCategories);
 			
 			mvc.perform(get("/show-categories")).andExpect(model().attribute("categories", is(allCategories)));
+		}
+		
+		// Testing for single tag
+		@Test
+		public void shouldRouteToSingleTagView() throws Exception {
+			long arbitraryTagId = 1;
+			when(tagRepo.findById(arbitraryTagId)).thenReturn(Optional.of(tag));
+			mvc.perform(get("/tag?id=1")).andExpect(view().name(is("tag")));
+		}
+		
+		@Test
+		public void shouldBeOkForSingleTag() throws Exception {
+			long arbitraryTagId = 1;
+			when(tagRepo.findById(arbitraryTagId)).thenReturn(Optional.of(tag));
+			mvc.perform(get("/tag?id=1")).andExpect(status().isOk());
+		}
+		
+		@Test
+		public void shouldNotBeOkForSingleTag() throws Exception {
+			mvc.perform(get("/tag?id=1")).andExpect(status().isNotFound());
+		}
+		
+		@Test
+		public void shouldPutSingleTagIntoModel() throws Exception {
+			when(tagRepo.findById(1L)).thenReturn(Optional.of(tag));
+			
+			mvc.perform(get("/tag?id=1")).andExpect(model().attribute("tags", is(tag)));
+		}
+		
+		// Testing for all tags
+		@Test
+		public void shouldRouteToAllTagsView() throws Exception {
+			mvc.perform(get("/show-tags")).andExpect(view().name(is("tags")));
+		}
+		
+		@Test
+		public void shouldBeOkForAllTags() throws Exception {
+			mvc.perform(get("/show-tags")).andExpect(status().isOk());
+		}
+		
+		@Test
+		public void shouldPutAllTagsIntoModel() throws Exception {
+			Collection<Tag> allTags = Arrays.asList(tag, anotherTag);
+			when(tagRepo.findAll()).thenReturn(allTags);
+			
+			mvc.perform(get("/show-tags")).andExpect(model().attribute("tags", is(allTags)));
 		}
 }

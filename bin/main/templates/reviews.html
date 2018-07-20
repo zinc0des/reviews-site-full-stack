@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
     <link rel="stylesheet" th:href="@{/styles/style.css}" />
 
     <title>Indian Food Reviews</title>
@@ -61,14 +60,18 @@
             </section>
         </main>
         <nav id="Nav">
-            <div>
-                <a href="./show-reviews">Reviews</a>
-                <a href="/show-categories">Categories</a>
+            <div class="mainNav">
+                <ul>
+                    <li><a href="./show-reviews">Reviews</a></li>
+                    <li><a href="/show-categories">Categories</a></li>
+                    <li><a href="/show-tags">Tags</a></li>
+                </ul>
             </div>
         </nav>
     <footer class="classFooter">
-        <small>&copy; 2018 Satavisha Roy </small>
+        <small>&copy; 2018 Satavisha Roy</small>
      </footer>
     </div>
+    <script src="../script.js" th:href="@{/script.js}"></script>
 </body>
 </html>

@@ -1,9 +1,14 @@
 package org.wcci.reviewssitefullstack;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -16,19 +21,22 @@ public class Review {
 	@ManyToOne
 	private Category category;
 
+	@ManyToMany
+	private Collection<Tag>	tags;
+	
 	@Lob
 	private String content;
 	private String title;
 	private String imageUrl;
 
-	protected Review() {
-	}
+	protected Review() {}
 
-	public Review(Category category, String title, String imageUrl, String content) {
+	public Review(Category category, String title, String imageUrl, String content, Tag...tags) {
 		this.category = category;
 		this.title = title;
 		this.imageUrl = imageUrl;
 		this.content = content;
+		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
 
 	public String getTitle() {
@@ -51,6 +59,20 @@ public class Review {
 		return category;
 	}
 
+	public Collection<Tag> getTags() {
+		return tags;
+	}
+
+	// Methods
+	public void addTag(Tag tag) {
+		this.tags.add(tag);
+	}
+	
+	public void deleteTag(Tag tag) { 
+		this.tags.remove(tag);
+	}
+	
+	// hashCode() & equals() for entity id
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/styles/style.css}" />
+
+	<title>Tags</title>
+</head>
+
+<body>
+	<div class="container">
+		<main>
+
+			<section id="intro">
+				<h1>Associated Review Tags</h1>
+			</section>
+
+				<div th:each="tag: ${tags}">
+					<ul>
+						<li><a th:href="@{/tag(id=${tag.id})}" th:text="${tag.name}"></a></li>
+					</ul>
+				</div>
+		</main>
+		
+		<nav id="Nav">
+                <div>
+                    <a href="./show-reviews">Reviews</a>
+                    <a href="/show-categories">Categories</a>
+                    <a href="/show-tags">Tags</a>
+                </div>
+        </nav>
+
+		<footer class="classFooter">
+           <small>&copy; 2018 Satavisha Roy </small>
+        </footer>
+	</div>
+	<script src="../script.js" th:href="@{/script.js}"></script>
+
+</body>
+</html>

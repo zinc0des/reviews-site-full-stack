@@ -90,14 +90,38 @@ figure {
  }
 
  #Nav {
-     display: block;
+     display: flex;
+     /* margin: 0 auto; */
      position: fixed;
      top: 0;
-     overflow: hidden;
+     /* overflow: hidden; */
      background: #fff;
      width: 100%;
      left: 0;
-     height: 2em;
+     height: 2em;  
+     align-items: center;
+     justify-content: flex-end; 
+ }
+
+ .mainNav {
+     display: flex;
+     flex-wrap: wrap;
+ }
+
+ .mainNav ul {
+     display: inline-flex;
+     align-items: flex-end;
+     text-decoration: none;
+     list-style-type: none;
+     padding: 0 2em;
+ }
+
+ @media screen and (max-width:700px) {
+    #Nav div {
+        position: static;
+        display: none;
+        margin-bottom: 1px;
+    }
  }
 
  @media screen and (max-width: 500px) {
