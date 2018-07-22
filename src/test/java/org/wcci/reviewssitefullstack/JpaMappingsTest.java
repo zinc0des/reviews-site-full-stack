@@ -32,6 +32,9 @@ public class JpaMappingsTest {
 	@Resource
 	private TagRepository tagRepo;
 	
+	@Resource
+	private CommentRepository commentRepo;
+	
 	@Test
 	public void shouldSaveAndLoadCategory() {
 		Category category = categoryRepo.save(new Category("category", "description"));
@@ -168,6 +171,47 @@ public class JpaMappingsTest {
 		Collection<Review> reviewsForTopic = reviewRepo.findByTagsId(tagId);
 		
 		assertThat(reviewsForTopic, containsInAnyOrder(review1, review2));
+	}
+	
+
+	@Test
+	public void shouldHAveTwoCommentsOnOneReview() {
+		Category indian =categoryRepo.save(new Category("indian", "description"));
+		Tag tag1 = tagRepo.save(new Tag("tag1"));
+		Review review1 = reviewRepo.save(new Review(indian, "review1title", "imageUrl", "content", tag1));
+		long review1Id = review1.getId();
+		
+		Comment testComment1 = new Comment("Author", review1,"Comment1");	
+		testComment1 = commentRepo.save(testComment1);
+		long testComment1Id = testComment1.getId();
+		
+		Comment testComment2 = new Comment("Author2", review1,"Comment2");	
+		testComment2 = commentRepo.save(testComment2);
+		long testComment2Id = testComment2.getId();
+
+		//working inside comment entity, driving creation of everything from getter's perspective
+		entityManager.flush();
+		entityManager.clear();
+		
+		Iterable<Comment> comments = commentRepo.findAll();
+		assertThat(comments, containsInAnyOrder(testComment1, testComment2));
+		//using optional, tied in each comment to its particular id
+		Optional<Comment> testComment1Result = commentRepo.findById(testComment1Id);
+		testComment1 = testComment1Result.get();
+		
+		Optional<Comment> testComment2Result = commentRepo.findById(testComment2Id);
+		testComment2 = testComment2Result.get();
+		//tying comment into appropriate review id
+		Optional<Review> review1Result = reviewRepo.findById(review1Id);
+		review1 = review1Result.get();
+		
+		assertThat(testComment1.getAuthor(), is("Author"));
+		assertThat(testComment2.getAuthor(), is("Author2"));
+		assertThat(testComment1.getReview(), is(review1));
+		assertThat(testComment2.getReview(), is(review1));
+		//combining two tests in one
+		assertThat(review1.getComments(), containsInAnyOrder(testComment1, testComment2));
+		
 	}
 
 }

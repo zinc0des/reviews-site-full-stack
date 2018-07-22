@@ -11,24 +11,60 @@
 <body>
     <div class="container">
         <main>
-            <section>
-            <h1>Top-Rated Recipe</h1>
-                 <h2 th:text="${review.title}"></h2>
-                    <p th:text="${review.content}"></p>
-                    <img class="center" th:src="@{${review.imageUrl}}" />
-                    <p th:if="${review.category}">
-                	   <strong>Category: </strong>
-                        <a th:href="@{/category(id=${review.category.id})}" th:text="' '+ ${review.category.name}"></a>
-                    </p>
-            </section>
+            <div th:each="review: ${reviews}">
+                <div>
+                    <h1>Top-Rated Recipe</h1>
+                        <h2 th:text="${review.title}"></h2>
+                            <p th:text="${review.content}"></p>
+                            <img class="center" th:src="@{${review.imageUrl}}" />
+                            <p th:if="${review.category}">
+                	           <strong>Category: </strong>
+                                <a th:href="@{/category(id=${review.category.id})}" th:text="' '+ ${review.category.name}"></a>
+                            </p>
+                </div>
+                <div id="tagsTitle">
+                    <strong><a href="/show-tags">Tags: </a></strong>
+                </div>
+                <div>
+                    <ul id="ReviewTags" th:each="tag: ${review.tags}">
+                       <li>
+                          <a th:href="@{/tag(id=${tag.id})}" th:text="' ' + ${tag.name}"></a>              
+                       </li>
+                   	</ul>
+                </div>
+              	<div class="add-comment">
+              		<form method="POST">
+              			<section>
+              				<label>Enter your name: </label>
+              				<input type="text" name="author"/>
+              			</section>
+              			<section>
+              				<label>What do you think of this of this review?</label>
+              				<input type="text" name="content"/>
+              			</section>
+              			<section>
+              				<input type="hidden" th:value="${reviews.id}" name="reviewId"/>
+              			</section>
+              			<section>
+              				<button th:formaction = "@{/add-comment}">Add Comment</button>
+              			</section>
+              		</form>
+              		
+              		<div th:each="comment: ${reviews.comments}">
+              			<h5><span th:text="${comment.author}">Commenter</span> says...</h5>
+              			<p th:text="${comment.content}"></p>
+              		</div>
+              	</div>
+            </div>
         </main>
     
         <nav id="Nav">
-                <div>
+                <div class="mainNav">
                     <a href="./show-reviews">Reviews</a>
                     <a href="/show-categories">Categories</a>
                     <a href="/show-tags">Tags</a>
                 </div>
+       <a href="http://localhost:8080/show-reviews"   >Back to Home</a>     
         </nav>
         <footer class="classFooter">
            <small>&copy; 2018 Satavisha Roy </small>

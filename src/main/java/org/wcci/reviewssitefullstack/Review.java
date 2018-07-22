@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Review {
@@ -24,11 +25,15 @@ public class Review {
 	@ManyToMany
 	private Collection<Tag>	tags;
 	
+	@OneToMany(mappedBy = "review")
+	private Collection<Comment> comments;
+	
 	@Lob
 	private String content;
 	private String title;
 	private String imageUrl;
 
+	
 	protected Review() {}
 
 	public Review(Category category, String title, String imageUrl, String content, Tag...tags) {
@@ -63,6 +68,11 @@ public class Review {
 		return tags;
 	}
 
+//collection of comments that will go into review entity
+	public Collection<Comment> getComments() {
+		return comments;
+	}
+	
 	// Methods
 	public void addTag(Tag tag) {
 		this.tags.add(tag);
