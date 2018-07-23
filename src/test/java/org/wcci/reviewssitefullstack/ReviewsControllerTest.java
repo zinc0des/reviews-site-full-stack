@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 
-public class ReviewControllerTest {
+public class ReviewsControllerTest {
 
 	@InjectMocks
 	private ReviewController underTest;
