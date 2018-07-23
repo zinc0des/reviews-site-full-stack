@@ -31,7 +31,13 @@ public class CommentController {
 	
 		Comment newComment = new Comment(author, review, content);
 		commentRepo.save(newComment);
+		if (author == "") {
+			author = "anonymous";
+		}
 		
+		if (content != "") {
+			commentRepo.save(new Comment(author, review, content));
+		}
 		return "redirect:/review?id=" + reviewId;
 		
 	}

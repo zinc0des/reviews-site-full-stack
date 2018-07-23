@@ -74,12 +74,14 @@ public class Review {
 	}
 	
 	// Methods
-	public void addTag(Tag tag) {
-		this.tags.add(tag);
+	public void addTag(Tag newTag) {
+		this.tags.add(newTag);
 	}
 	
-	public void deleteTag(Tag tag) { 
-		this.tags.remove(tag);
+	//allowing the collection to have a tag removed
+	public void removeTag(Tag tagToRemove) {
+		tags.remove(tagToRemove);
+		
 	}
 	
 	// hashCode() & equals() for entity id
@@ -104,4 +106,5 @@ public class Review {
 			return false;
 		return true;
 	}
+
 }

@@ -73,47 +73,7 @@ public class ReviewController {
 		model.addAttribute("tags", tagRepo.findAll());
 		return "tags";
 	}
-	
-	// Add a newly created tag directly to a specific review using a form.
-	@PostMapping("/new-tag")
-	public RedirectView createTagForReview(
-		@RequestParam(value="tagName") String tagName,
-		@RequestParam(value="reviewId") Long reviewId,
-		Model model) {
-		
-		Optional<Review> reviewResult = reviewRepo.findById(reviewId);
-		
-		if (reviewResult.isPresent()) {
-			Tag createdTag = tagRepo.save(new Tag(tagName));
-			Review review = reviewResult.get();
-			review.addTag(createdTag);
-			reviewRepo.save(review);
-		}
 
-		return new RedirectView("/review?id=" + reviewId);
-	}
-	
-	@PostMapping("/remove-tag-from-review")
-	public RedirectView removeTagForReview(
-			@RequestParam(value="tagName") String tagName,
-			@RequestParam(value="reviewId") Long reviewId,
-			Model model) {
-			
-			Optional<Review> reviewResult = reviewRepo.findById(reviewId);
-			
-			if (reviewResult.isPresent()) {
-				Review review = reviewResult.get();
-				
-				Optional<Tag> tag = tagRepo.findFirstByName(tagName);
-				
-				review.deleteTag(tag.get());
-				reviewRepo.save(review);
-			}
-			
-			return new RedirectView("/review?id=" + reviewId);
-	}
-	
-	
 }
 	
 
